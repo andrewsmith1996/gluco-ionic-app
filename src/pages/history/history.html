@@ -1,0 +1,54 @@
+<ion-header>
+  	<ion-navbar>
+		<ion-title>Diary <ion-badge color="primary">{{ num_results }}</ion-badge></ion-title>
+  	</ion-navbar>
+</ion-header>
+
+<ion-content color="primary">
+	<div *ngIf="!bloodGlucoseResults || bloodGlucoseResults.length == 0">
+		<p class="empty-message">Your blood glucose diary is currently empty.</p>
+	</div>
+	
+	<ion-card *ngFor="let glucose_result of bloodGlucoseResults">
+		<ion-card-content>
+			<ion-grid>
+				<ion-row>
+					<ion-col col-7>
+						<ion-row>
+							<ion-col>
+								<h2><ion-icon name="calendar"></ion-icon>{{ datetimeProvider.transform_date(glucose_result.datetime) }}</h2>
+							</ion-col>
+						</ion-row>
+						<ion-row>
+							<ion-col>
+								<h2><ion-icon name="time"></ion-icon>{{ datetimeProvider.transform_time(glucose_result.datetime) }} </h2>
+							</ion-col>
+						</ion-row>
+					</ion-col>
+					<ion-col col-5>
+						<ion-row>
+							<ion-col>
+								<h2 text-right><ion-icon name="bicycle"></ion-icon>{{ glucose_result.physical_activity }} mins</h2>
+							</ion-col>
+						</ion-row>
+						<ion-row>
+							<ion-col>
+								<h2 text-right><ion-icon name="nutrition"></ion-icon>{{ glucose_result.carb_consumption }}g</h2>
+							</ion-col>
+						</ion-row>
+					</ion-col>
+				</ion-row>
+				<hr>
+				<ion-row>
+					<ion-col col-6>
+						<h1 text-center class="{{ (glucose_result.level > 4.0 && glucose_result.level < 13.0) ? 'good-level' : 'bad-level' }}">{{ glucose_result.level }}<span> mmol/L</span></h1>
+					</ion-col>
+
+					<ion-col col-6>
+						<h1 text-center>{{ glucose_result.insulin_dose }}<span> units</span></h1>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
+		</ion-card-content>
+	</ion-card>
+</ion-content>

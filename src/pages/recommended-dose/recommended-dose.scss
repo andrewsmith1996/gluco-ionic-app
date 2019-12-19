@@ -1,0 +1,36 @@
+page-recommended-dose {
+
+    ion-icon{
+        font-size:32px;
+        display:block;
+
+        &[name="ios-arrow-round-down"]{
+            font-size:46px;
+        }
+    }
+
+    hr {
+        border: 0;
+        clear:both;
+        display:block;
+        width: 100%;               
+        background-color:#FFFF00;
+        height: 1px !important;
+    }
+
+    h1{
+        span{
+            color:grey;
+            font-size:14px;
+        }
+    }
+
+    .good-level{
+        color:green;
+    }
+
+    .bad-level{
+        color:red;
+    }
+
+}

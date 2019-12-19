@@ -1,0 +1,31 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>Settings</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-card>
+        <ion-card-content>
+            <form>
+                <ion-item>
+                    <ion-label floating><ion-icon name="icr"></ion-icon>ICR (units per 10g carbs)</ion-label>
+                    <ion-input type="number"[(ngModel)]="settings.icr" name="icr"></ion-input>
+                </ion-item>
+                
+                <ion-grid>
+                    <ion-row>
+                        <ion-col>
+                            <button block ion-button (click)="saveSettings()">Save</button>	
+                        </ion-col>
+                        <ion-col>
+                            <button block ion-button color="danger" (click)="clearSettings()">Clear</button>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+    
+            </form>
+        </ion-card-content>
+    </ion-card>
+			
+</ion-content>

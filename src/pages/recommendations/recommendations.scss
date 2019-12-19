@@ -1,0 +1,33 @@
+page-recommendations{
+   
+    .empty-message{
+        text-align:center;
+        color:#fff;
+        font-size:14px;
+    }
+
+    ion-content{
+        background-color: map-get($colors, primary) !important;
+
+        ion-card{
+            border-radius:map-get($card-styles, radius) !important;
+            background-color: map-get($card-styles, background-color) !important;
+
+            ion-card-content{
+                padding:map-get($card-styles, card-padding) !important;
+
+                button{
+                    ion-icon{
+                        font-size: 52px;
+                        color:map-get($colors, primary);
+                    }
+                }
+
+                .caption{
+                    margin:5px 0 5px 0;
+                    font-size:14px;
+                }
+            }
+        }
+    }
+}

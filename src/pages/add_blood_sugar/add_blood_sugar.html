@@ -1,0 +1,49 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>{{this.time}}</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-card>
+<ion-card-content>
+    
+    <form>
+        <ion-item no-padding>
+            <ion-label floating><ion-icon name="stats"></ion-icon> mmol/L</ion-label>
+            <ion-input type="number" inputmode="numeric" [(ngModel)]="diary_entry.bg_level" (ngModelChange)="checkRecommendationEnabled($event)" name="bg_level"></ion-input>
+        </ion-item>
+        
+        <ion-item no-padding>
+            <ion-label floating><ion-icon name="text"></ion-icon> Units</ion-label>
+            <ion-input type="number" inputmode="numeric" pattern="[0-9]*" [(ngModel)]="diary_entry.insulin_dose"  (ngModelChange)="checkRecommendationEnabled($event)" name="insulin_dose"></ion-input>
+        </ion-item>	
+        
+        <br>
+        <button block ion-button (click)="presentRecommendedDoseModal()" [disabled]="!recommendation_enabled">Get Recommeded Dose</button>
+        <br>
+        <ion-item no-padding>
+            <ion-label>Meal</ion-label>
+            <ion-select [(ngModel)]="diary_entry.meal"  (ngModelChange)="checkRecommendationEnabled($event)" name="meal">
+                    <ion-option value="breakfast">Breakfast</ion-option>
+					<ion-option value="lunch">Lunch</ion-option>
+					<ion-option value="dinner">Dinner</ion-option>
+					<ion-option value="bed">Bed</ion-option>
+				</ion-select>
+			</ion-item>
+            
+			<ion-item no-padding>
+                <ion-label floating><ion-icon name="bicycle"></ion-icon> Physical Activity (minutes)</ion-label>
+				<ion-input type="number" inputmode="numeric" pattern="[0-9]*" [(ngModel)]="diary_entry.physical_activity"  (ngModelChange)="checkRecommendationEnabled($event)" name="physical_activity"></ion-input>
+			</ion-item>
+            
+			<ion-item no-padding>
+                <ion-label floating><ion-icon name="restaurant"></ion-icon> Carbohydrate Consumption (g)</ion-label>
+				<ion-input type="number" inputmode="numeric" pattern="[0-9]*" [(ngModel)]="diary_entry.carb_consumption" (ngModelChange)="checkRecommendationEnabled($event)" name="carb_consumption"></ion-input>
+			</ion-item>
+			<br>
+			<button block ion-button (click)="addNewBloodSugar()">Save</button>
+        </form>
+    </ion-card-content>
+    </ion-card>
+</ion-content>

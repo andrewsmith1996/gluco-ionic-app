@@ -1,0 +1,10 @@
+page-add {
+    ion-content{
+        background-color: map-get($colors, primary) !important;
+     
+        ion-card{
+            border-radius:map-get($card-styles, radius) !important;
+            background-color: map-get($card-styles, background-color) !important;
+        }
+    }
+}

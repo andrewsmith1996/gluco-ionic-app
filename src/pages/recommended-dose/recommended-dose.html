@@ -1,0 +1,105 @@
+<ion-header>
+
+  <ion-navbar>
+	<ion-title>{{ originalData.bg_level }}mmol/L</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content >
+  <ion-grid>
+	<ion-row>
+	  <ion-col>
+		<h4>Today</h4>
+	  </ion-col>
+	</ion-row>
+
+	<ion-row>
+		<ion-col col-3>
+			<ion-icon text-center name="calendar"></ion-icon>
+		  	<p text-center>{{ datetimeProvider.transform_date(originalData.datetime) }}</p>
+		</ion-col>
+		<ion-col col-3>
+		  <ion-icon text-center name="time"></ion-icon>
+			<p text-center>{{ datetimeProvider.transform_time(originalData.datetime) }} </p>
+		</ion-col>
+		<ion-col col-3>
+		  	<ion-icon text-center name="restaurant"></ion-icon>
+		  	<p text-center>{{ originalData.carb_consumption }}g </p>
+		</ion-col>
+		<ion-col col-3>
+		  	<ion-icon text-center name="bicycle"></ion-icon>
+		  	<p text-center>{{ originalData.physical_activity }} minutes </p>
+		</ion-col>
+	  </ion-row>
+
+		<ion-row>
+			<ion-col>
+				<hr>
+				<h4>Closest Match</h4>
+			</ion-col>
+		</ion-row>
+
+	  <ion-row>
+		<ion-col col-3>
+		  <ion-icon text-center name="calendar"></ion-icon>
+		  	<p text-center>{{ datetimeProvider.transform_date(recommendedDoseData.datetime) }}</p>
+		</ion-col>
+		<ion-col col-3>
+		  <ion-icon text-center name="time"></ion-icon>
+		  	<p text-center>{{ datetimeProvider.transform_time(recommendedDoseData.datetime) }} </p>
+		</ion-col>
+	  
+		<ion-col col-3>
+		  <ion-icon text-center name="restaurant"></ion-icon>
+		  	<p text-center>{{ recommendedDoseData.carb_consumption }}g </p>
+		</ion-col>
+		<ion-col col-3>
+		  <ion-icon text-center name="bicycle"></ion-icon>
+		  	<p text-center>{{ recommendedDoseData.physical_activity }} minutes </p>
+		</ion-col>
+	  </ion-row>
+
+	  <ion-row>
+			<ion-col>
+				<hr>
+				<h4>Outcome</h4>
+			</ion-col>
+		</ion-row>
+
+	
+		<ion-row>
+		  <ion-col col-4>
+			<p text-center>Before</p>
+			<h1 text-center class="{{ (recommendedDoseData.level > 4.0 && recommendedDoseData.level < 13.0) ? 'good-level' : 'bad-level' }}">{{ recommendedDoseData.level }}<span> mmol/L</span></h1>
+		  </ion-col>
+
+		  <ion-col col-4>
+			<p text-center>Dose</p>
+			<h1 text-center>{{ recommendedDoseData.insulin_dose }}<span> units</span></h1>
+		  </ion-col>
+		  <ion-col col-4>
+			<p text-center>After</p>
+			<h1 text-center class="{{ (recommendedDoseData.outcome > 4.0 && recommendedDoseData.outcome < 13.0) ? 'good-level' : 'bad-level' }}">{{ recommendedDoseData.outcome }}<span> mmol/L</span></h1>
+		  </ion-col>
+		</ion-row>
+
+		<ion-row>
+		  <ion-col>
+			<hr>
+			  <h1 text-center>{{ 100 - (recommendedDoseData.similarity * 100).toFixed(1) }}% similarity</h1>
+		  </ion-col>
+		</ion-row>
+		<ion-row>
+		  <ion-col col-6>
+			<button ion-button block color="secondary"(click)="acceptRecommendedDose()">Accept</button>
+		  </ion-col>
+		  <ion-col col-6>
+			<button ion-button block color="danger" (click)="declineRecommendedDose()">Decline</button>
+		  </ion-col>
+		</ion-row>
+
+	</ion-grid>
+
+</ion-content>

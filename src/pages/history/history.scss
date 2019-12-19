@@ -1,0 +1,50 @@
+page-history {
+
+    .empty-message{
+        text-align:center;
+        color:#fff;
+        font-size:14px;
+    }
+
+    ion-content{
+        background-color: map-get($colors, primary) !important;
+    
+        ion-card{
+            border-radius:map-get($card-styles, radius) !important;
+            background-color: map-get($card-styles, background-color) !important;
+
+            ion-card-content{
+                padding:map-get($card-styles, card-padding) !important;
+            
+                h1{
+                    span{
+                        color:grey;
+                        font-size:14px;
+                    }
+
+                    &.good-level{
+                        color:green;
+                    }
+                
+                    &.bad-level{
+                        color:red;
+                    }
+                }
+                
+                ion-icon{
+                    margin:5px;
+                }  
+                
+            
+                hr {
+                    border: 0;
+                    clear:both;
+                    display:block;
+                    width: 96%;               
+                    background-color:#FFFF00;
+                    height: 1px !important;
+                }
+            }
+        }
+    }
+}

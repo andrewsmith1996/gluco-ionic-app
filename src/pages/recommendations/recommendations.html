@@ -1,0 +1,45 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>Recommendations</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+
+
+	<!-- Custom Refresher Content -->
+	<ion-refresher slot="fixed" (ionRefresh)="refreshRecommendations($event)">
+		<ion-refresher-content
+		pullingIcon="arrow-dropdown"
+		pullingText="Pull to refresh"
+		refreshingSpinner="circles"
+		refreshingText="Refreshing...">
+		</ion-refresher-content>
+	</ion-refresher>
+	
+	<div *ngIf="!recommendations || recommendations.length == 0">
+		<p class="empty-message">No recommendations are currently available.</p>
+	</div>
+
+	<ion-card class="recommendation-card" *ngFor="let recommendation of recommendations">
+		<ion-card-content>
+			<ion-grid>
+				<ion-row>
+					<ion-col col-10 text-wrap>
+						<h2>{{ recommendation.title }} <ion-badge color="primary">{{ recommendation.frequency }}</ion-badge></h2>
+						<p>{{ recommendation.text }}</p>
+						<div *ngIf="recommendation.seen == true">
+							<p class="caption"><strong>Viewed {{ recommendation.timeSeen }} <ion-icon name="checkmark"></ion-icon></strong></p>
+						</div>
+					</ion-col>
+					<ion-col col-2>
+						<button>
+							<ion-icon name="arrow-round-forward" (click)="viewDetail(recommendation)" item-right text-center></ion-icon>
+						</button>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
+		</ion-card-content>
+	</ion-card>
+
+</ion-content>

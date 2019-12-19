@@ -1,0 +1,90 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>Statistics</ion-title>
+	</ion-navbar>
+</ion-header>
+
+
+<ion-content>
+
+	<!-- <p class="empty-message">Your blood glucose diary is currently empty.</p> -->
+
+	<ion-card>
+		<ion-card-header>
+			Averages (mmol/L)
+		</ion-card-header>
+
+		<ion-card-content>
+			<ion-grid class="averages">
+				<ion-row>
+					<ion-col col-4>
+						<h2 text-center>7 day</h2>
+						<p text-center>{{ average_week }}</p>
+					</ion-col>
+					
+					<ion-col col-4>
+						<h2 text-center>30 day</h2>
+						<p text-center>{{ average_month }}</p>
+					</ion-col>
+					
+					<ion-col col-4>
+						<h2 text-center>90 day</h2>
+						<p text-center>{{ average_three_month }}</p>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
+		</ion-card-content>
+	</ion-card>
+
+	<ion-card>
+		<ion-card-header>
+			Number of Levels (mmol/L)
+		</ion-card-header>
+		
+		<ion-card-content>
+			
+			<div *ngIf="very_low_count < 0 || low_count < 0 || normal_count < 0 || high_count < 0 || very_high_count < 0">
+				<p>No blood glucose results.</p>
+			</div>
+			
+			<canvas #bloodGlucoseCategoryDoughnut></canvas>
+
+		</ion-card-content>
+	</ion-card>
+
+	<ion-card>
+		<ion-card-header>
+			Mean by Meal
+		</ion-card-header>
+		<ion-card-content>
+			<canvas #bloodGlucoseMeanTimeLine></canvas>
+		</ion-card-content>
+	</ion-card>
+
+	<ion-card>
+		<ion-card-header>
+			Median by Meal
+		</ion-card-header>
+		<ion-card-content>
+			<canvas #mediansByMealBarChart></canvas>
+		</ion-card-content>
+	</ion-card>
+
+	<ion-card>
+		<ion-card-header>
+			Lows by Meal
+		</ion-card-header>
+		<ion-card-content>
+			<canvas #lowsByMealBarChart></canvas>
+		</ion-card-content>
+	</ion-card>
+
+	<ion-card>
+		<ion-card-header>
+			Highs by Meal
+		</ion-card-header>
+		<ion-card-content>
+			<canvas #highsByMealBarChart></canvas>
+		</ion-card-content>
+	</ion-card>
+</ion-content>

@@ -1,0 +1,66 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>{{ pattern.type }}</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content overflow-scroll="true">
+	<ion-grid>
+		<ion-row>
+			<ion-col>
+				<h3>{{ recommendation.title }} </h3>
+				<p>{{ recommendation.text }} </p>
+				<hr>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col col-4>
+				<ion-icon text-center name="eye"></ion-icon>
+				<p text-center>{{ recommendation.seen ? "Seen" : "Not Seen" }} </p>
+			</ion-col>
+			<ion-col col-4>
+				<ion-icon text-center name="pulse"></ion-icon>
+				<p text-center>Occurences: {{ pattern.frequency }}</p>
+			</ion-col>
+			<ion-col col-4>
+				<ion-icon text-center name="clock"></ion-icon>
+				<p text-center>{{ pattern.in_progress ? "In Progress" : "Fixed" }}</p>
+			</ion-col>
+		</ion-row>
+
+		<ion-row>
+			<ion-col>
+				<hr>
+				<h3>Occurences</h3>
+				<ion-list>
+					<ion-item *ngFor="let glucose_result of bloodGlucoseResults">
+						<p>{{ (glucose_result.level).toFixed(1) }} mmol/L on {{ datetimeProvider.transform_date(glucose_result.datetime) }} at {{ glucose_result.meal }} - {{ datetimeProvider.transform_time(glucose_result.datetime) }}</p>
+					</ion-item>
+				</ion-list>
+			</ion-col>
+		</ion-row>
+
+		<ion-row>
+			<ion-col>
+				<h3>Causes</h3>
+
+				<div *ngIf="pattern_causes.length == 0">
+					<p>Unable to find causes.</p>
+				</div>
+				
+				<div *ngIf="pattern_causes.length > 0">
+					<ion-list>
+						<ion-item *ngFor="let cause of pattern_causes">
+							<p>{{ cause }}</p>
+						</ion-item>
+					</ion-list>
+				</div>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col>
+				<button ion-button block (click)="markAsSeen()" [disabled]="recommendation.seen">Mark as seen</button>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+</ion-content>
